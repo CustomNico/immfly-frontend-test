@@ -9,6 +9,11 @@ $ npm i
 
 $ npm start
 
+## Other scripts
+
+### Run linter
+$ npm run lint
+
 ## Objectives
 
 ✅ **NOT USE** bootstrap or other css frameworks.
@@ -33,6 +38,6 @@ $ npm start
 
 🚫 Add **tests**
 
-🚫 Use a **linter**
+✅ Use a **linter**
 
 ✅ Custom **webpack** implementation instead of **create-react-app** or similar packages

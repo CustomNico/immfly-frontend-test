@@ -86,7 +86,7 @@ function PokemonDetail() {
                         <PokeStat>
                             <strong>Abilities: </strong>
                             <ul style={{marginBottom: 0}}>
-                                {pokemon.abilities.map(ability => <li>{ability.ability.name}</li>)}
+                                {pokemon.abilities.map(ability => <li key={pokemon.id}>{ability.ability.name}</li>)}
                             </ul>
                         </PokeStat>
                     </PokemonCard>

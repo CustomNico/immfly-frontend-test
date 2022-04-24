@@ -84,7 +84,7 @@ function PokemonList() {
                         const img_url = "https://img.pokemondb.net/sprites/black-white/anim/normal/" + poke.name + ".gif";
                         const link_path = "/pokemon/" + poke.name
                         return (
-                            <PokemonCard onClick={() => navigate(link_path)}>
+                            <PokemonCard key={poke.name} onClick={() => navigate(link_path)}>
                                 <img align="center" style={{ display: 'block', margin: 'auto' }} src={img_url} />
                                 <PokeName>{poke.name}</PokeName>
                             </PokemonCard>

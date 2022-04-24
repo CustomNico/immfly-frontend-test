@@ -1,5 +1,5 @@
 {
-  "name": "immfly test app",
+  "name": "immfly-test-app",
   "dependencies": {
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.5",
@@ -15,6 +15,11 @@
     "webpack-dev-server": "^4.8.1"
   },
   "scripts": {
-    "start": "webpack serve --config webpack.config.js"
+    "start": "webpack serve --config webpack.config.js",
+    "lint": "eslint src/**/*.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-plugin-react": "^7.29.4"
   }
 }
