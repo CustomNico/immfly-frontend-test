@@ -5,8 +5,9 @@ import styled from "styled-components";
 import PokemonList from "./components/pokemon/list";
 import PokemonDetail from "./components/pokemon/detail";
 
-const AppWrapper = styled.section`
-    background: #f5f3f3;
+const AppWrapper = styled.div`
+    padding-top: 30px;
+    padding-bottom: 30px;
 `;
 
 function App() {

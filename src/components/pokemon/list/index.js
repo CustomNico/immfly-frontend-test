@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 function PokemonList() {
     const [pokemons, setPokemons] = useState([]);
-  
+    const navigate = useNavigate();
+
     useEffect(() => {
         fetch('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
             .then(response => response.json())
             .then(data => setPokemons(data.results));
     }, []);
 
-    const Wrapper = styled.section`
+    const Wrapper = styled.div`
         display: flex;
         flex-wrap: wrap;
         gap: 20px 2vw;
@@ -41,14 +43,14 @@ function PokemonList() {
         }
     `;
 
-    const PokemonCard = styled.section`
+    const PokemonCard = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         align-items: center;
 
         background: #FFF;
-        border: 1px solid #000;
+        border: 1px solid grey;
         border-radius: 5px;
         padding: 30px 0px;
 
@@ -66,22 +68,31 @@ function PokemonList() {
         font-weight: 600;
         text-transform: capitalize
     `;
-  
+
+    const PokeName = styled.div`
+        margin-top: 25px;
+        color: slategrey;
+    `;
+
     return (
-      <div>
+        <div>
             {pokemons === [] ?
                 <div>Loading pokemons</div>
                 :
                 <Wrapper>
-                    {pokemons.map(poke =>
-                        <PokemonCard>
-                            <img align="center" src={"https://img.pokemondb.net/sprites/black-white/anim/normal/" + poke.name + ".gif"}/>
-                            <div style={{marginTop: 25}}>{poke.name}</div>
-                        </PokemonCard>
-                    )}
+                    {pokemons.map(poke => {
+                        const img_url = "https://img.pokemondb.net/sprites/black-white/anim/normal/" + poke.name + ".gif";
+                        const link_path = "/pokemon/" + poke.name
+                        return (
+                            <PokemonCard onClick={() => navigate(link_path)}>
+                                <img align="center" style={{ display: 'block', margin: 'auto' }} src={img_url} />
+                                <PokeName>{poke.name}</PokeName>
+                            </PokemonCard>
+                        )
+                    })}
                 </Wrapper>
             }
-      </div>
+        </div>
     );
 }
 
