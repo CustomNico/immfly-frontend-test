@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 
+import FavouriteToggler from "../../utils/favouriteToggler";
+
 const PokemonCard = styled.div`
     position: relative;
     display: flex;
@@ -52,7 +54,7 @@ function PokemonDetail() {
         if (typeof name === 'string') {
             fetch('https://pokeapi.co/api/v2/pokemon/' + name)
                 .then(response => response.json())
-                .then(data => {setPokemon(data);console.log(data)});
+                .then(data => setPokemon(data));
         }
     }, []);
 
@@ -73,6 +75,7 @@ function PokemonDetail() {
                 :
                 <div>
                     <PokemonCard>
+                        <FavouriteToggler pokemon={pokemon.name}/>
                         <ReturnButton onClick={() => navigate("/pokemon")}>
                             &times;
                         </ReturnButton>
@@ -87,7 +90,7 @@ function PokemonDetail() {
                         <PokeStat>
                             <strong>Abilities: </strong>
                             <ul style={{marginBottom: 0}}>
-                                {pokemon.abilities.map(ability => <li key={pokemon.id}>{ability.ability.name}</li>)}
+                                {pokemon.abilities.map(ability => <li key={ability.ability.name}>{ability.ability.name}</li>)}
                             </ul>
                         </PokeStat>
                     </PokemonCard>

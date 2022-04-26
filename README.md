@@ -31,7 +31,7 @@ $ npm run lint
 
 ## 🌟 Bonus 🌟
 
-🚫 Allow to select user's favourite pokemon and see them in a new page. Feel free to design it.
+✅ Allow to select user's favourite pokemon and see them in a new page. Feel free to design it.
 
 ✅ Add a filter to search pokemon by name
 

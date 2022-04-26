@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+
 import SearchFilter from "../../utils/searchFilter";
+import Nav from "../../utils/nav";
+import FavouriteToggler from "../../utils/favouriteToggler";
+
 import logo from "../../../assets/pokemon-logo.png"
+
+import { isFavourite } from "../../../utils/favourites";
 
 const Wrapper = styled.div`
     display: flex;
@@ -36,6 +42,7 @@ const Wrapper = styled.div`
 `;
 
 const PokemonCard = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -73,7 +80,8 @@ const Logo = styled.img`
     margin:auto;
 `;
 
-function PokemonList() {
+function PokemonList(props) {
+    const { favs } = props
     const [pokemons, setPokemons] = useState([]);
     const [filter, setFilter] = useState("");
     const navigate = useNavigate();
@@ -84,9 +92,6 @@ function PokemonList() {
             .then(data => setPokemons(data.results));
     }, []);
 
-    useEffect(() => {
-        console.log(filter)
-    }, [filter]);
 
     return (
         <div>
@@ -94,19 +99,25 @@ function PokemonList() {
                 <div>Loading pokemons</div>
                 :
                 <div>
-                    <Logo src={logo} />
+                    <Logo src={logo} onClick={() => navigate("/pokemon")}/>
+                    <Nav/>
                     <SearchFilter onChange={setFilter}/>
                     <Wrapper>
-                        {pokemons.filter(poke => filter === "" || poke.name.includes(filter)).map(poke => {
-                            const img_url = "https://img.pokemondb.net/sprites/black-white/anim/normal/" + poke.name + ".gif";
-                            const link_path = "/pokemon/" + poke.name
-                            return(
+                        {pokemons.filter(poke =>
+                            ((filter === "" || poke.name.includes(filter)) && (isFavourite(poke.name) || !favs)))
+                            .map(poke => {
+                                const img_url = "https://img.pokemondb.net/sprites/black-white/anim/" + (favs ? "shiny" : "normal") + "/" + poke.name + ".gif";
+                                const link_path = "/pokemon/" + poke.name
+                                return (
                                     <PokemonCard key={poke.name} onClick={() => navigate(link_path)}>
+                                        {!favs &&
+                                            <FavouriteToggler pokemon={poke.name} />
+                                        }
                                         <img align="center" style={{ display: 'block', margin: 'auto' }} src={img_url} />
                                         <PokeName>{poke.name}</PokeName>
                                     </PokemonCard>
                                 )
-                        })}
+                            })}
                     </Wrapper>
                 </div>
             }

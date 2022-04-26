@@ -15,7 +15,8 @@ function App() {
     return (
         <AppWrapper>
             <Routes>
-                <Route index path="pokemon" element={<PokemonList />} />
+                <Route index path="pokemon" element={<PokemonList favs={false}/>} />
+                <Route index path="favourites" element={<PokemonList favs={true}/>} />
                 <Route path="/pokemon/:name" element={<PokemonDetail />} />
                 <Route path="*" element={<Navigate to="pokemon" />} />
             </Routes>
