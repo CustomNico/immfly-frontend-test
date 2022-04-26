@@ -12,6 +12,7 @@ $ npm start
 ## Other scripts
 
 ### Run linter
+
 $ npm run lint
 
 ## Objectives
@@ -32,7 +33,7 @@ $ npm run lint
 
 🚫 Allow to select user's favourite pokemon and see them in a new page. Feel free to design it.
 
-🚫 Add a filter to search pookemon by name
+✅ Add a filter to search pokemon by name
 
 ✅ Use **styled-components**
 

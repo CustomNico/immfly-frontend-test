@@ -2,6 +2,47 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 
+const PokemonCard = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background: #FFF;
+    border: 1px solid grey;
+    padding: 30px 0px;
+    max-width: 300px;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    font-family: Arial;
+    font-weight: 600;
+    text-transform: capitalize
+`;
+
+const PokeName = styled.div`
+    text-align: center;
+    margin-top: 25px;
+    color: slategrey;
+`;
+
+const PokeStat = styled.div`
+    color: slategrey;
+    font-weight: 400;
+    padding: 10px 0 0 25px;
+`;
+
+const ReturnButton = styled.a`
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    color: slategrey;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+`;
+
 function PokemonDetail() {
     const [pokemon, setPokemon] = useState(null);
     const navigate = useNavigate();
@@ -15,46 +56,6 @@ function PokemonDetail() {
         }
     }, []);
 
-    const PokemonCard = styled.div`
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-
-        background: #FFF;
-        border: 1px solid grey;
-        padding: 30px 0px;
-        max-width: 300px;
-
-        margin-right: auto;
-        margin-left: auto;
-
-        font-family: Helvetica;
-        font-weight: 600;
-        text-transform: capitalize
-    `;
-
-    const PokeName = styled.div`
-        text-align: center;
-        margin-top: 25px;
-        color: slategrey;
-    `;
-
-    const PokeStat = styled.div`
-        color: slategrey;
-        font-weight: 400;
-        padding: 10px 0 0 25px;
-    `;
-
-    const ReturnButton = styled.a`
-        position: absolute;
-        top: 0px;
-        right: 10px;
-        color: slategrey;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 10px;
-    `;
 
     const getTypes = () => {
         let types_arr = [];

@@ -6,7 +6,8 @@ const htmlPlugin = new HtmlWebPackPlugin({
 module.exports = {
     mode: 'development',
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
@@ -17,6 +18,13 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i, 
+                loader: 'file-loader',
+                options: {
+                  name: 'src/assets/[name].[ext]'
+                }
             }
         ]
     },
