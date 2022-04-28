@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 import { isFavourite, addFavourite, removeFavourite } from "../../../utils/favourites";
 
@@ -15,7 +16,7 @@ const Toggler = styled.img`
     height: 30px;
 `;
 
-function PokemonList(props) {
+function FavouriteToggler(props) {
     const name = props.pokemon;
     const [icon, setIcon] = useState("");
 
@@ -42,4 +43,8 @@ function PokemonList(props) {
     );
 }
 
-export default PokemonList;
+FavouriteToggler.propTypes = {
+    pokemon: PropTypes.string,
+};
+
+export default FavouriteToggler;

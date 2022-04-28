@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
     padding-top: 30px;
@@ -63,5 +63,9 @@ function SearchFilter(props) {
     );
 
 }
+
+SearchFilter.propTypes = {
+    onChange: PropTypes.func,
+};
 
 export default SearchFilter;

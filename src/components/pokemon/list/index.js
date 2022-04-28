@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 import SearchFilter from "../../utils/searchFilter";
 import Nav from "../../utils/nav";
@@ -124,5 +125,9 @@ function PokemonList(props) {
         </div>
     );
 }
+
+PokemonList.propTypes = {
+    favs: PropTypes.bool,
+};
 
 export default PokemonList;
