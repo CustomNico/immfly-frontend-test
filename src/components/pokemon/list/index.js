@@ -7,6 +7,8 @@ import SearchFilter from "../../utils/searchFilter";
 import Nav from "../../utils/nav";
 import FavouriteToggler from "../../utils/favouriteToggler";
 
+import { getPokemons } from "../../../utils/pokemonAPI";
+
 import logo from "../../../assets/pokemon-logo.png"
 
 import { isFavourite } from "../../../utils/favourites";
@@ -87,10 +89,13 @@ function PokemonList(props) {
     const [filter, setFilter] = useState("");
     const navigate = useNavigate();
 
+    async function getData(){
+        let data = await getPokemons(151);
+        setPokemons(data.results);
+    }
+
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
-            .then(response => response.json())
-            .then(data => setPokemons(data.results));
+        getData();
     }, []);
 
 

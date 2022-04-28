@@ -78,6 +78,7 @@ function Nav() {
                 >
                     Generation 1
                 </PageLink>
+                
                 <BallIcon src={master} onClick={() => navigate("/favourites")}/>
                 <PageLink 
                     src={master} 

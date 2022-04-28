@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import FavouriteToggler from "../../utils/favouriteToggler";
 
+import { getPokemon } from "../../../utils/pokemonAPI";
+
 const PokemonCard = styled.div`
     position: relative;
     display: flex;
@@ -50,11 +52,14 @@ function PokemonDetail() {
     const navigate = useNavigate();
     const { name } = useParams();
 
+    async function getData(){
+        let data = await getPokemon(name);
+        setPokemon(data);
+    }
+
     useEffect(() => {
-        if (typeof name === 'string') {
-            fetch('https://pokeapi.co/api/v2/pokemon/' + name)
-                .then(response => response.json())
-                .then(data => setPokemon(data));
+        if (typeof name === 'string' && name !== '') {
+            getData();
         }
     }, []);
 
